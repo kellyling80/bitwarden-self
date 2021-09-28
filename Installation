@@ -1,0 +1,69 @@
+Bitwarden Self Hosted Installation Guide
+On Red Hat Linux 8.x
+
+Bitwarden install guide - https://bitwarden.com/help/article/install-on-premise
+
+Get installation ID and Key - https://bitwarden.com/host/
+
+
+
+On RHEL server;
+
+Step 1 - open port 80 and 443
+
+sudo firewall-cmd --permanent --zone=public --add-service=http 
+sudo firewall-cmd --permanent --zone=public --add-service=https
+sudo firewall-cmd --zone=public --add-masquerade --permanentsudo 
+firewall-cmd --reload
+
+Step 2 - install Docker and Docker-compose
+
+Docker Engine - https://docs.docker.com/engine/install/rhel/
+Docker Compose - https://docs.docker.com/compose/install/
+
+Step 3 - post-Docker 
+
+Create a bitwarden user:
+
+  sudo adduser bitwarden
+
+Set password for bitwarden user (strong password):
+  
+  sudo passwd bitwarden
+
+Create a docker group (if it doesn’t already exist):
+
+  sudo groupadd docker
+
+Add the bitwarden user to the docker group:
+
+  sudo usermod -aG docker bitwarden
+
+Create a bitwarden directory:
+
+  sudo mkdir /opt/bitwarden
+
+Set permissions for the /opt/bitwarden directory:
+
+  sudo chmod -R 700 /opt/bitwarden
+
+Set the bitwarden user ownership of the /opt/bitwarden directory:
+
+  sudo chown -R bitwarden:bitwarden /opt/bitwarden
+  
+Step 4 - Install Bitwarden
+
+  su -bitwarden
+
+  curl -Lso bitwarden.sh https://go.btwrdn.co/bw-sh \
+      && chmod 700 bitwarden.sh
+    
+Run the installer script. A ./bwdata directory will be created relative to the location of bitwarden.sh
+
+  ./bitwarden.sh install
+  
+
+  ./bitwarden.sh start
+  
+  
+
