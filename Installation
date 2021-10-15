@@ -13,8 +13,8 @@ Step 1 - open port 80 and 443
 
 sudo firewall-cmd --permanent --zone=public --add-service=http 
 sudo firewall-cmd --permanent --zone=public --add-service=https
-sudo firewall-cmd --zone=public --add-masquerade --permanentsudo 
-firewall-cmd --reload
+sudo firewall-cmd --zone=public --add-masquerade --permanent
+sudo firewall-cmd --reload
 
 Step 2 - install Docker and Docker-compose
 
