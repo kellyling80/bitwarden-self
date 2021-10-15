@@ -53,7 +53,7 @@ Set the bitwarden user ownership of the /opt/bitwarden directory:
   
 Step 4 - Install Bitwarden
 
-  su -bitwarden
+  su - bitwarden
 
   curl -Lso bitwarden.sh https://go.btwrdn.co/bw-sh \
       && chmod 700 bitwarden.sh
